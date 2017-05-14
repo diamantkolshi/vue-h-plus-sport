@@ -94,35 +94,38 @@
                 <h1>Log in</h1>
             </div>
         </div>
-        <div class="post-content section-inner thin">
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+        <div class="post-content section-inner thin">   
+                            
             
             
 <script type="text/javascript" src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
 
-<div id="app">    
-	<button>Log in</button>        
-	{{msg}}    
+<div id="app">  
+  <form>  
+	  <button v-if="!loggedIn" v-on:click="logIn('Mike', $event)">Log in</button>    
+    <button v-else @click="logOut($event)">Log out</button>    
+	 {{msg}}    
+  </form>
 </div>
 
 <script>
     new Vue({
        el: '#app',
        data: {
-           msg: ''           
+          msg: '',
+          loggedIn: false          
+       },
+       methods: {
+        logIn: function(username, event) {
+          event.preventDefault();
+          this.loggedIn = true;
+          this.msg = 'Welcome!, ' + username;
+        },
+        logOut: function() {
+          event.preventDefault();
+          this.loggedIn = false;
+          this.msg = 'So long!'
+        }
        }
     });
 </script>
