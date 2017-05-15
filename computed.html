@@ -4,7 +4,11 @@
 
 
 <div id="app">
-  {{firstName}} {{lastName}}
+  <!-- {{firstName}} {{lastName}} -->
+  <div>
+    <input type="text" v-model.number="tempFahrenheit">
+  	Temperature in Celcius: {{tempCelcius}}
+  </div>
 </div>
 
 <script>
@@ -12,7 +16,20 @@
     el: '#app',
     data: {
       firstName: "Mike",
-      lastName: "Sullivan"
+      lastName: "Sullivan",
+      tempFahrenheit: 0
+    },
+    computed: {
+    	tempCelcius: function() {
+    		console.log("asdasd");
+    		return Math.round(5/9 * (this.tempFahrenheit - 32));
+    	}
+    },
+    methods: {
+    	tempCelciusFunc: function() {
+    		console.log("asdasd");
+    		return Math.round(5/9 * (this.tempFahrenheit - 32));
+    	}
     }
   });
 </script>
