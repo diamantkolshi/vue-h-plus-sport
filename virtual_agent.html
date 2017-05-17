@@ -125,7 +125,10 @@
       },
       watch: {
         question: function(newValue) {
-          if(newValue.indexOf('products') > -1) {
+          if(newValue == '') {
+            this.response = "";
+          }
+          else if(newValue.indexOf('products') > -1) {
             this.response = "Sure, I can list the products for you";
             $.getJSON("https://hplussport.com/api/products")
               .done(function(data) {
@@ -134,7 +137,7 @@
           }
           else {
             this.response = "Sorry, I don't understand that question.";
-            this.products = []
+            this.products = [];
           }
         }
       }
